@@ -42,8 +42,7 @@ exports.test = (title, options) => {
 		.join(os.EOL);
 
 	const output = [
-		`# ${stripAnsi(title)}`,
-		`${passed ? 'ok' : 'not ok'} ${options.index} - ${title} ${directive}`.trim(),
+		`${passed ? 'ok' : 'not ok'} ${options.index} - ${stripAnsi(title)} ${directive}`.trim(),
 		comment
 	];
 
