@@ -15,7 +15,6 @@ const reporters = [
 	'tap-dot',
 	'tap-nyan',
 	'tap-min',
-	'faucet',
 	'tap-summary',
 	'tap-pessimist',
 	'tap-json'
