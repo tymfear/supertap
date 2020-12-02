@@ -56,7 +56,7 @@ exports.test = (title, options) => {
 		].join(os.EOL));
 	}
 
-	return output.filter(Boolean).join(os.EOL) + os.EOL;
+	return output.filter(Boolean).join(os.EOL);
 };
 
 exports.finish = stats => {
