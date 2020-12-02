@@ -5,6 +5,7 @@ const indentString = require('indent-string');
 const stripAnsi = require('strip-ansi');
 const arrify = require('arrify');
 const yaml = require('js-yaml');
+const os = require('os');
 
 const serializeError = err => {
 	const object = serializeErr(err);
@@ -38,7 +39,7 @@ exports.test = (title, options) => {
 
 	const comment = arrify(options.comment)
 		.map(line => indentString(line, 4).replace(/^ {4}/gm, '#   '))
-		.join('\n');
+		.join(os.EOL);
 
 	const output = [
 		`# ${stripAnsi(title)}`,
@@ -53,10 +54,10 @@ exports.test = (title, options) => {
 			'  ---',
 			indentString(yaml.safeDump(object).trim(), 4),
 			'  ...'
-		].join('\n'));
+		].join(os.EOL));
 	}
 
-	return output.filter(Boolean).join('\n');
+	return output.filter(Boolean).join(os.EOL) + os.EOL;
 };
 
 exports.finish = stats => {
@@ -73,6 +74,6 @@ exports.finish = stats => {
 		`# tests ${passed + failed + skipped}`,
 		`# pass ${passed}`,
 		skipped > 0 ? `# skip ${skipped}` : null,
-		`# fail ${failed + crashed + todo}\n`
-	].filter(Boolean).join('\n');
+		`# fail ${failed + crashed + todo}${os.EOL}`
+	].filter(Boolean).join(os.EOL);
 };
